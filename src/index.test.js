@@ -2,10 +2,15 @@ import {expect} from 'chai';
 // import sinon from 'sinon';
 // import {marbles} from 'rxjs-marbles/mocha';
 
-import {myFunc} from './index';
+import * as api from './index';
 
 describe('index', () => {
-  it('should export a function', () => {
-    expect(myFunc).to.be.a('function');
+  it('should export public API', () => {
+    expect(Object.keys(api)).to.deep.equal([
+      'appendToFile',
+      'fromFile',
+      'shortenChunks',
+      'writeToFile',
+    ]);
   });
 });
