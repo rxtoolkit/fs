@@ -51,10 +51,20 @@ csvContentBuffer$.subscribe(console.log);
 // "Crunch",1
 ```
 
-### shortenChunks
-Takes a stream of Buffer objects and ensures that they are shortened to the desired size.  Useful, for example, if you want to control the size of a file upload.
+### `shortenChunks`
+Takes a stream of Buffer objects and ensures that they are shortened to the desired size, while preserving order/sequence.  Useful, for example, if you want to control the size of a file upload.
 ```js
-import {shortenChunks} from '@buccaneerai/rxjs-fs';
+import path from 'path';
+import {fromFile,shortenChunks} from '@buccaneerai/rxjs-fs';
+
+const csvContentAsBuffer$ = fromFile({
+  filePath: path.resolve(__dirname, './my-csv.csv'),
+});
+const chunkSize = 512;
+const shortenedBuffer$ = fileChunk$.pipe(
+  shortenChunks(chunkSize)
+);
+shortenedBuffer$.subscribe(console.log);
 ```
 
 ### `writeToFile`
