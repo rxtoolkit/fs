@@ -12,7 +12,13 @@
   "bugs": {
     "url": "https://github.com/buccaneerai/rxjs-fs/issues"
   },
-  "keywords": [],
+  "keywords": [
+    "rxjs",
+    "streaming",
+    "observables",
+    "file system",
+    "fs"
+  ],
   "directories": {
     "src": "src"
   },
