@@ -1,29 +1,82 @@
-# @buccaneerai/PACKAGE_NAME
-> 👂 FIXME - add description
+# @buccaneerai/rxjs-fs
+> 💾 RxJS operators and utilities for working with files and file streams locally
 
 ## Installation
 This is a private package. It requires setting up access in your npm config.
 
 ```bash
-yarn add @buccaneerai/PACKAGE_NAME
+yarn add @buccaneerai/rxjs-fs
 ```
 
 ## API
 
-FIXME - write some docs so other devs know how the public API works.
-### `myFunc`
-```js
-import {map} from 'rxjs/operators';
-import {myFunction} from '@buccaneerai/PACKAGE_NAME';
+### `appendToFile`
+Appends a stream of data to a file:
+```javascript
+import path from 'path';
+import {of} from 'rxjs';
+import {appendFile} from 'rxfs';
 
-// The pipeline can take a stream of audio chunks encoded as 
-// LINEAR16 (PCM encoded as 16-bit integers) in the form of a Buffer
-const buffer$ = pcmChunkEncodedAs16BitIntegers$.pipe(
-  map(chunk => Buffer.from(chunk, 'base64')),
-  toDeepgram({
-    username: process.env.DEEPGRAM_USERNAME,
-    password: process.env.DEEPGRAM_PASSWORD,
-  })
+const data = [
+  '"animal","coolness"',
+  '"dolphin",10',
+  '"algea",1',
+  '"mermaid",6',
+  '"octopus",9',
+  '"octopus",9',
+  '"narwhale",8',
+];
+
+const writeStream$ = of(...data).pipe(
+  appendFile({filePath: path.resolve(__dirname, './output.csv')})
 );
-buffer$.subscribe(console.log); // log transcript output
+// write the input observable to the file
+writeStream$.subscribe(console.log);
+```
+
+### `fromFile`
+Streams data from a file as a stream of Buffers.
+```js
+import path from 'path';
+import {fromFile} from '@buccaneerai/rxjs-fs';
+
+const csvContentAsBuffer$ = fromFile({
+  filePath: path.resolve(__dirname, './my-csv.csv'),
+});
+csvContentBuffer$.subscribe(console.log);
+// "name","scariness"
+// "Blackbeard",10
+// "Morgan",9
+// "Sparrow",2
+// "Crunch",1
+```
+
+### shortenChunks
+Takes a stream of Buffer objects and ensures that they are shortened to the desired size.  Useful, for example, if you want to control the size of a file upload.
+```js
+import {shortenChunks} from '@buccaneerai/rxjs-fs';
+```
+
+### `writeToFile`
+Writes data to file (overwriting any previous contents).
+```js
+import path from 'path';
+import {of} from 'rxjs';
+import {writeFile} from '@buccaneerai/rxjs-fs';
+
+const data = [
+  '"animal","coolness"',
+  '"dolphin",10',
+  '"algea",1',
+  '"mermaid",6',
+  '"octopus",9',
+  '"octopus",9',
+  '"narwhale",8',
+];
+
+const writeStream$ = of(...data).pipe(
+  writeFile({filePath: path.resolve(__dirname, './output.csv')})
+);
+// write the input observable to the file
+writeStream$.subscribe(console.log);
 ```
