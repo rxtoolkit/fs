@@ -72,7 +72,7 @@ Writes data to file (overwriting any previous contents).
 ```js
 import path from 'path';
 import {of} from 'rxjs';
-import {writeFile} from '@buccaneerai/rxjs-fs';
+import {writeToFile} from '@buccaneerai/rxjs-fs';
 
 const data = [
   '"animal","coolness"',
@@ -85,7 +85,7 @@ const data = [
 ];
 
 const writeStream$ = of(...data).pipe(
-  writeFile({filePath: path.resolve(__dirname, './output.csv')})
+  writeToFile({filePath: path.resolve(__dirname, './output.csv')})
 );
 // write the input observable to the file
 writeStream$.subscribe(console.log);
