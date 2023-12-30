@@ -1,16 +1,13 @@
 {
-  "name": "@buccaneerai/rxjs-fs",
-  "version": "2.0.0",
+  "name": "@rxtk/fs",
+  "version": "2.1.0",
   "description": "💾 RxJS operators and utilities for working with files and file streams locally",
   "main": "dist/index.js",
-  "repository": "https://github.com/buccaneerai/rxjs-fs.git",
-  "author": "Buccaneer LLC <opensource@buccaneer.ai>",
-  "license": "UNLICENSED",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+  "repository": "https://github.com/rxtoolkit/fs.git",
+  "author": "Brian Flaherty",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buccaneerai/rxjs-fs/issues"
+    "url": "https://github.com/rxtoolkit/fs/issues"
   },
   "keywords": [
     "rxjs",

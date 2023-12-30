@@ -12,14 +12,14 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://npm.pkg.github.com/'
-          scope: '@buccaneerai'
+          scope: '@rxtk'
           always-auth: true
       - run: rm .yarnrc
       - run: yarn
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       - run: yarn build
-      - run: yarn publish
+      - run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
