@@ -1,6 +1,6 @@
 {
   "name": "@rxtk/fs",
-  "version": "2.1.0",
+  "version": "1.0.0",
   "description": "💾 RxJS operators and utilities for working with files and file streams locally",
   "main": "dist/index.js",
   "repository": "https://github.com/rxtoolkit/fs.git",
