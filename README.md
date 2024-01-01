@@ -5,6 +5,10 @@
 This is a private package. It requires setting up access in your npm config.
 
 ```bash
+npm i @rxtk/fs
+```
+
+```bash
 yarn add @rxtk/fs
 ```
 
